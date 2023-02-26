@@ -95,6 +95,13 @@ static const char *areacmd[] = { "tigercapture", "--area", NULL };
 static const char *fullcmd[] = { "tigercapture", "--full", NULL };
 static const char *pincmd[] = { "tigercapture", "--pin", NULL };
 
+static void
+switch_theme(const Arg *arg)
+{
+  system("/home/tigr/.config/dotfiles/dwm/scripts/./theme.sh");
+  reload_xresources();
+}
+
 /*
  * Xresources preferences to load at startup
  */
@@ -119,22 +126,23 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd} },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd} },
 
-	{ 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol} },
-	{ 0,				XF86XK_AudioLowerVolume, spawn, {.v = downvol} },
-	{ 0,				XF86XK_AudioMute, spawn, {.v = mutevol} },
-	{ 0,				XF86XK_MonBrightnessUp, spawn, {.v = lightup} },
-	{ 0,				XF86XK_MonBrightnessDown, spawn, {.v = lightdown} },
+  { 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol} },
+  { 0,				XF86XK_AudioLowerVolume, spawn, {.v = downvol} },
+  { 0,				XF86XK_AudioMute, spawn, {.v = mutevol} },
+  { 0,				XF86XK_MonBrightnessUp, spawn, {.v = lightup} },
+  { 0,				XF86XK_MonBrightnessDown, spawn, {.v = lightdown} },
 
-	{ 0,				XF86XK_AudioRaiseVolume, spawn, {.v = status} },
-	{ 0,				XF86XK_AudioLowerVolume, spawn, {.v = status} },
-	{ 0,				XF86XK_AudioMute, spawn, {.v = status} },
-	{ 0,				XF86XK_MonBrightnessUp, spawn, {.v = status} },
-	{ 0,				XF86XK_MonBrightnessDown, spawn, {.v = status} },
+  { 0,				XF86XK_AudioRaiseVolume, spawn, {.v = status} },
+  { 0,				XF86XK_AudioLowerVolume, spawn, {.v = status} },
+  { 0,				XF86XK_AudioMute, spawn, {.v = status} },
+  { 0,				XF86XK_MonBrightnessUp, spawn, {.v = status} },
+  { 0,				XF86XK_MonBrightnessDown, spawn, {.v = status} },
 
   { 0,        XK_Print, spawn, {.v = areacmd} },
   { ShiftMask,XK_Print, spawn, {.v = fullcmd} },
   { MODKEY,   XK_Print, spawn, {.v = pincmd} },
 
+  { MODKEY,                       XK_r,      switch_theme,   {0} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -143,6 +151,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
@@ -169,7 +178,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[11]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -199,7 +207,6 @@ static const Button buttons[] = {
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
