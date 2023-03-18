@@ -17,7 +17,13 @@ function get_volume {
 		fi
 	fi
 
-	echo "$ICON $VALUE%"
+  if [ "$(pactl get-source-mute @DEFAULT_SOURCE@)" = "Mute: yes" ]; then
+    MIC="󰍭 "
+  else
+    MIC=""
+  fi
+
+	echo "$MIC$ICON $VALUE%"
 }
 
 function get_brightness {

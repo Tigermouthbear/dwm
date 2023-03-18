@@ -88,6 +88,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *upvol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *downvol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *mutevol[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *mutemic[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *lightup[] = { "xbacklight", "-inc", "5", NULL };
 static const char *lightdown[] = { "xbacklight", "-dec", "5", NULL };
 static const char *status[] = { "/home/tigr/.config/dotfiles/dwm/scripts/./status.sh", "true", NULL };
@@ -129,12 +130,14 @@ static const Key keys[] = {
   { 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol} },
   { 0,				XF86XK_AudioLowerVolume, spawn, {.v = downvol} },
   { 0,				XF86XK_AudioMute, spawn, {.v = mutevol} },
+  { MODKEY,   XK_F1, spawn, {.v = mutemic} },
   { 0,				XF86XK_MonBrightnessUp, spawn, {.v = lightup} },
   { 0,				XF86XK_MonBrightnessDown, spawn, {.v = lightdown} },
 
   { 0,				XF86XK_AudioRaiseVolume, spawn, {.v = status} },
   { 0,				XF86XK_AudioLowerVolume, spawn, {.v = status} },
   { 0,				XF86XK_AudioMute, spawn, {.v = status} },
+  { MODKEY,   XK_F1, spawn, {.v = status} },
   { 0,				XF86XK_MonBrightnessUp, spawn, {.v = status} },
   { 0,				XF86XK_MonBrightnessDown, spawn, {.v = status} },
 
