@@ -4,15 +4,15 @@ function get_volume {
 	VALUE=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '/^Volume/ { print substr($5, 1, length($5)-1) }')
 
 	if [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ]; then
-		ICON="婢"
+		ICON="󰝟"
 	else
 		if [ $VALUE -lt 30 ]; then
-			ICON="奄"
+			ICON="󰕿"
 		else
 			if [ $VALUE -lt 60 ]; then
-				ICON="奔"
+				ICON="󰖀"
 			else
-				ICON="墳"
+				ICON="󰕾"
 			fi
 		fi
 	fi
@@ -27,7 +27,7 @@ function get_volume {
 }
 
 function get_brightness {
-	echo "盛 $(printf "%.0f\n" $(xbacklight))%"
+	echo " $(printf "%.0f\n" $(xbacklight))%"
 }
 
 function get_battery {
@@ -35,14 +35,14 @@ function get_battery {
 	STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
 	if [ $STATUS = "Charging" ]; then
-		ICON=""
+		ICON="󰂄"
 	else
 		if [ $CAPACITY == 100 ]; then
-			ICON=""
+			ICON="󰁹"
 		else if [ $CAPACITY -lt 10 ]; then
-			ICON=""
+			ICON="󰂃"
 		else
-			ICON=$(printf "\u$(printf "%x" $((0xf578 + $CAPACITY / 10)))")
+			ICON=$(printf "\U000$(printf "%x" $((0xf0079 + $CAPACITY / 10)))")
 		fi fi
 	fi
 
@@ -50,7 +50,7 @@ function get_battery {
 }
 
 function get_mem {
-  echo "﬙ $(free -h | awk '/^Mem:/ { print $3 "/" $2 }')"
+  echo "󰘚 $(free -h | awk '/^Mem:/ { print $3 "/" $2 }')"
 }
 
 function hard_set {
@@ -59,7 +59,7 @@ function hard_set {
 }
 
 function soft_set {
-	xsetroot -name "$(cat /tmp/dwmstatus)$(date +' %X    %a %B %d, %Y') "
+	xsetroot -name "$(cat /tmp/dwmstatus)$(date +'󰅐 %X   󰃭 %a %B %d, %Y') "
 }
 
 while true; do
