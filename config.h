@@ -875,7 +875,7 @@ static const char *mutevol[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "to
 static const char *mutemic[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *lightup[] = { "xbacklight", "-inc", "5", NULL };
 static const char *lightdown[] = { "xbacklight", "-dec", "5", NULL };
-static const char *status[] = { "~/.config/dotfiles/dwm-flexipatch/scripts/./status.sh", "true", NULL };
+static const char *status[] = { "/home/tigr/.config/dotfiles/dwm-flexipatch/scripts/./status.sh", "true", NULL };
 static const char *areacmd[] = { "tigercapture", "--area", NULL };
 static const char *fullcmd[] = { "tigercapture", "--full", NULL };
 static const char *pincmd[] = { "tigercapture", "--pin", NULL };
@@ -883,7 +883,7 @@ static const char *pincmd[] = { "tigercapture", "--pin", NULL };
 static void
 switch_theme(const Arg *arg)
 {
-  system("~/.config/dotfiles/dwm-flexipatch/scripts/./theme.sh");
+  system("/home/tigr/.config/dotfiles/dwm-flexipatch/scripts/./theme.sh");
   xrdb(arg);
 }
 
