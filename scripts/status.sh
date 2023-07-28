@@ -32,9 +32,8 @@ function get_brightness {
 
 function get_battery {
 	CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
-	STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
-	if [ $STATUS = "Charging" ]; then
+	if [ $(cat /sys/class/power_supply/BAT0/status) = "Charging" ]; then
 		ICON="󰂄"
 	else
 		if [ $CAPACITY == 100 ]; then
@@ -62,7 +61,7 @@ function soft_set {
 	xsetroot -name "$(cat /tmp/dwmstatus)$(date +'󰅐 %X   󰃭 %a %B %d, %Y') "
 }
 
-while true; do
+while [[ $(ps -C dwm -ocmd | grep "dwm") != "" ]]; do
 	hard_set
 	[ "$1" != "true" ] || break
 	sleep 1

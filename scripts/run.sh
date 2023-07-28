@@ -2,10 +2,13 @@
 
 THEMES=($(echo $(ls ~/.config/dotfiles/dwm-flexipatch/themes -l | grep .jpg | awk '{ print $9 }') | sed 's/.jpg//g'))
 THEME_INDEX=$(expr $RANDOM % ${#THEMES[@]})
+if [ -f ~/.cache/theme ]; then
+    THEME_INDEX=$(< ~/.cache/theme)
+fi
 THEME=${THEMES[$THEME_INDEX]}
 
 # set theme
-echo $THEME_INDEX > /tmp/theme
+echo $THEME_INDEX > ~/.cache/theme
 feh --bg-fill ~/.config/dotfiles/dwm-flexipatch/themes/$THEME.jpg
 xrdb ~/.config/dotfiles/dwm-flexipatch/themes/$THEME.Xresources
 

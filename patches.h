@@ -167,7 +167,7 @@
 /* The systray patch adds systray for the status bar.
  * https://dwm.suckless.org/patches/systray/
  */
-#define BAR_SYSTRAY_PATCH 0
+#define BAR_SYSTRAY_PATCH 1
 
 /* Show tag symbols in the bar. */
 #define BAR_TAGS_PATCH 1
@@ -1122,7 +1122,7 @@
  *
  * https://github.com/bakkeby/patches/wiki/steam
  */
-#define STEAM_PATCH 0
+#define STEAM_PATCH 1
 
 /* Adds toggleable keyboard shortcut to make a client 'sticky', i.e. visible on all tags.
  * https://dwm.suckless.org/patches/sticky/
