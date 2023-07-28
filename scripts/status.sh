@@ -61,15 +61,19 @@ function soft_set {
 	xsetroot -name "$(cat /tmp/dwmstatus)$(date +'󰅐 %X   󰃭 %a %B %d, %Y') "
 }
 
-while [[ $(ps -C dwm -ocmd | grep "dwm") != "" ]]; do
+while [ $(ps -C dwm -ocmd | grep "dwm") != "" ]; do
 	hard_set
 	[ "$1" != "true" ] || break
 	sleep 1
 
 	for i in {1..9}
 	do
-		soft_set
-		sleep 1
+        if [ $(ps -C dwm -ocmd | grep "dwm") != "" ]; then
+            soft_set
+            sleep 1
+        else
+            exit 0
+        fi
 	done
 done
 
