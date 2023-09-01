@@ -6,5 +6,5 @@ THEME=${THEMES[$THEME_INDEX]}
 
 echo $THEME_INDEX > ~/.cache/theme
 feh --bg-fill ~/.config/dotfiles/dwm-flexipatch/themes/$THEME.jpg
-xrdb ~/.config/dotfiles/dwm-flexipatch/themes/$THEME.Xresources
+xrdb ~/.config/dotfiles/dwm-flexipatch/themes/$THEME.Xresources && kill -USR1 $(pidof st)
 
